@@ -8,8 +8,11 @@ static int getNextToken();
 
 static std::map<char, int> BinopPrecedence; // prioroty for binary operator `* > +`
 
-int GetTokPrecedence();
+static int GetTokPrecedence();
 
+// ===------------------------------------------------=== //
+// Parser
+// ===------------------------------------------------=== //
 
 std::unique_ptr<ExprAST> ParseExpression();         // INTERFACE
 

@@ -3,6 +3,16 @@
 // static int CurTok;
 static int getNextToken() { return CurTok = get_tok(); } 
 
+// static std::map<char, int> BinopPrecedence; // prioroty for binary operator `* > +`
+static int GetTokPrecedence()
+{
+    if (!isascii(CurTok))
+        return -1;
+    int tokPrec = BinopPrecedence[CurTok];
+    return tokPrec <= 0 ? -1 : tokPrec;     // make sure it was declared
+}
+
+
 std::unique_ptr<ExprAST> LogError(const char *Str) {
     fprintf(stderr, "Error: %s\n", Str);
     return nullptr;
@@ -11,16 +21,6 @@ std::unique_ptr<PrototypeAST> LogErrorP(const char *Str) {
     LogError(Str);
     return nullptr;
 }
-
-// static std::map<char, int> BinopPrecedence; // prioroty for binary operator `* > +`
-int GetTokPrecedence()
-{
-    if (!isascii(CurTok))
-        return -1;
-    int tokPrec = BinopPrecedence[CurTok];
-    return tokPrec <= 0 ? -1 : tokPrec;     // make sure it was declared
-}
-
 
 // ===------------------------------------------------=== //
 // Parser
