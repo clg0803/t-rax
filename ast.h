@@ -2,7 +2,7 @@
 #include <memory>
 #include <vector>
 
-namespace ast
+namespace
 {
     class ExprAST
     {
@@ -10,18 +10,18 @@ namespace ast
             virtual ~ExprAST() = default;
     };
 
-    class NumberExprAst : public ExprAST
+    class NumberExprAST : public ExprAST
     {
         double Val;
     public:
-        NumberExprAst(double Val) : Val(Val){}
+        NumberExprAST(double Val) : Val(Val){}
     };
 
-    class VariableExprAst : public ExprAST
+    class VariableExprAST : public ExprAST
     {
         std::string Name;
     public:
-        VariableExprAst(const std::string& name) : Name(name) {}
+        VariableExprAST(const std::string& name) : Name(name) {}
     };
 
     class BinaryExprAST : public ExprAST
