@@ -1,9 +1,6 @@
-#include <map>
-
-#include "lexer.h"
 #include "parser.h"
 
-static int CurTok;
+// static int CurTok;
 static int getNextToken() { return CurTok = get_tok(); } 
 
 std::unique_ptr<ExprAST> LogError(const char *Str) {
@@ -15,7 +12,7 @@ std::unique_ptr<PrototypeAST> LogErrorP(const char *Str) {
     return nullptr;
 }
 
-static std::map<char, int> BinopPrecedence; // prioroty for binary operator `* > +`
+// static std::map<char, int> BinopPrecedence; // prioroty for binary operator `* > +`
 int GetTokPrecedence()
 {
     if (!isascii(CurTok))

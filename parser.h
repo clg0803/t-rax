@@ -1,4 +1,15 @@
+#include "lexer.h"
 #include "ast.h"
+
+#include <map>
+
+static int CurTok;
+static int getNextToken();
+
+static std::map<char, int> BinopPrecedence; // prioroty for binary operator `* > +`
+
+int GetTokPrecedence();
+
 
 std::unique_ptr<ExprAST> ParseExpression();         // INTERFACE
 
