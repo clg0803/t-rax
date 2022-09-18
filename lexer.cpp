@@ -2,7 +2,7 @@
 
 int get_tok()
 {
-    int LastChar = ' ';
+    static int LastChar = ' ';
     while (isspace(LastChar))
     {
         LastChar = getchar();
@@ -17,7 +17,8 @@ int get_tok()
         if (IdentifierStr == "extern")
             return tok_extern;
         return tok_identifier;  // var name
-    } else if (isdigit(LastChar) || LastChar == '.')
+    }
+    if (isdigit(LastChar) || LastChar == '.')
     {
         // number 
         std::string NumStr;
@@ -28,7 +29,8 @@ int get_tok()
         } while (isdigit(LastChar) || LastChar == '.');
         NumVal = strtod(NumStr.c_str(), nullptr);
         return tok_number;
-    } else if (LastChar == '#')
+    }
+    if (LastChar == '#')
     {
         // comments
         do 
